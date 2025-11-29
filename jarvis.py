@@ -33,18 +33,19 @@ engine.setProperty('rate', 200)
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[0].id)
 
-    # print(voices[0]) # There are two types of Voice id. this is first voice id: male
-    # print(voices[1]) # 2nd voice id, female
+# print(voices[0]) # There are two types of Voice id. 1st voice id: male
+# print(voices[1]) # 2nd voice id, female
 
 
 # This is speak function
+
 
 def speak(text):
     """ This function converts text to voice
     Args:
         text
     returns:
-        voice 
+        voice
     """
     engine.say(text)
     engine.runAndWait()
@@ -95,7 +96,23 @@ def greeting():
     speak("I am Jarvis. Please tell me how may I help you today?")
 
 
+def play_music():
+        music_dir ="D:\\Data_Science_and_Machine_Learning\\03-Inceptionbd\\14-(Module-14)_Mega_Project_(Python)\\Class_Practices\\jarvis_system_first_part\\JARVIS-Voice-Assistant-System\\music"
+        try:
+            surah = os.listdir(music_dir)
+            if surah:
+                random_surah = random.choice(surah)
+                speak(f"Playing a random surah: {random_surah}")
+                os.startfile(os.path.join(music_dir, random_surah))
+            else:
+                speak("No music files found in your music directory.")
+        except Exception:
+            print("Sorry sir, I could not find your music folder.")
+
+
 greeting()
+
+# play_music()
 
 
 while True:
@@ -115,17 +132,80 @@ while True:
     elif "how are you" in query:
         speak("I am functioning at full capacity sir.")
 
-    elif "Who made you" in query:
+    elif "Who created you?" in query:
         speak("I was created by Asadul Islam sir.")
 
     elif "Thank you" in query:
         speak("It's my pleasure sir, Always happy to help.")
+        logging.info("User expressed gratitude")
 
     elif "open google" in query:
         speak("Ok sir, Please type here what do you want to search")
         webbrowser.open("google.com")
+        logging.info("User requested to open google")
 
-    elif "exit" in query:
+    # open calculator
+    elif "open calculator" in query or "calculator" in query:
+        speak("Opening calculator...")
+        subprocess.Popen("calc.exe")
+        logging.info("User requested to open calculator")
+
+    # open Notepad
+    elif "open notepad" in query:
+        speak("Opening notepad...")
+        subprocess.Popen("notepad.exe")
+        logging.info("User requested to open notepad")
+
+    # open terminal
+    elif "open terminal" in query or "open cmd" in query:
+        speak("Opening command prompt terminal...")
+        subprocess.Popen("cmd.exe")
+        logging.info("User requested to open terminal")
+
+    # open calendar
+    elif "open calendar" in query:
+        speak("Opening calendar...")
+        webbrowser.open("https://calendar.google.com")
+        logging.info("User requested to open calendar")
+
+    # Youtube search
+    elif "open youtube" in query:
+        speak("Opening youtube for you...")
+        query = query.replace("youtube", "")
+        webbrowser.open(f"https://www.youtube.com/results?query_search={query}")
+        logging.info("User requested to open youtube")
+
+    # Facebook
+    elif "open facebook" in query:
+        speak("Opening facebook for you...")
+        webbrowser.open("facebook.com")
+        logging.info("User requested to open facebook")
+
+    elif "open github" in query:
+        speak("Opening github for you...")
+        webbrowser.open("github.com")
+        logging.info("User requested to open github")
+
+    elif "joke" in query:
+        jokes = [
+                "Why do programmers prefer dark mode? Because light attracts bugs."
+                "What do you call a programmer without a girlfriend? A full-stack developer."
+                "Why do Java developers wear glasses? Because they don't C#"
+            ]
+        speak(random.choice(jokes))
+        
+    elif "wikipedia" in query:
+        speak("Searching wikipedia...")
+        query = query.replace("wikipedia", "")
+        results = wikipedia.summary(query, sentences=2)
+        speak("According to wikipedia.")
+        speak(results)
+        logging.info("User requested information from wikipedia")
+
+    elif "play music" in query or "music" in query:
+        play_music()
+
+    elif "exit" in query or "stop" in query:
         print("Thank you sir for your time. Have a great day!")
         logging.info("User exited the program")
         exit()
