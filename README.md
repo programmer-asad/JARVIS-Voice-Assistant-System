@@ -52,15 +52,17 @@ This project uses speech recognition and text-to-speech (TTS) to provide a hands
    ```
 
 
-## For exe file conversion:
+## 5. For exe file conversion:
 
 ## python library
+
    ```bash
    pip install pyinstaller
    ```
 
 ## python command
-      ```bash
+
+   ```bash
    pyinstaller --onefile jarvis.py
    ```
 
