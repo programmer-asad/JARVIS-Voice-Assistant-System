@@ -52,7 +52,7 @@ This project uses speech recognition and text-to-speech (TTS) to provide a hands
    ```
 
 
-## 5. For exe file conversion:
+## For exe file conversion:
 
 ## python library
 
