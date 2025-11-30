@@ -7,6 +7,7 @@ import wikipedia
 import webbrowser
 import random
 import subprocess
+import google.generativeai as genai
 
 
 # Logging configuration
@@ -110,9 +111,18 @@ def play_music():
             print("Sorry sir, I could not find your music folder.")
 
 
-greeting()
+def gemini_model_response(user_input):
+    GEMINI_API_KEY = "Your API KEY"
+    genai.configure(api_key=GEMINI_API_KEY)
+    model = genai.GenerativeModel("gemini-2.5-flash")
+    prompt = f"Your name is JARVIS, You act like JARVIS. Answer the provided question in short: {user_input}"
+    response = model.generate_content(prompt)
+    result = response.text
 
-# play_music()
+    return result
+
+
+greeting()
 
 
 while True:
@@ -211,5 +221,6 @@ while True:
         exit()
 
     else:
-        print("I am sorry, I can't help you with that")
-        logging.info("User asked for unsupported command")
+        response = gemini_model_response(query)
+        speak(response)
+        logging.info("User asked for others questions")

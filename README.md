@@ -51,6 +51,20 @@ This project uses speech recognition and text-to-speech (TTS) to provide a hands
    python jarvis.py
    ```
 
+
+## For exe file conversion:
+
+## python library
+   ```bash
+   pip install pyinstaller
+   ```
+
+## python command
+      ```bash
+   pyinstaller --onefile jarvis.py
+   ```
+
+
 ## 👨‍💻 Author
 
 **Md. Asadul Islam**
