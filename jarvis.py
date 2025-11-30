@@ -98,7 +98,7 @@ def greeting():
 
 
 def play_music():
-        music_dir ="D:\\Data_Science_and_Machine_Learning\\03-Inceptionbd\\14-(Module-14)_Mega_Project_(Python)\\Class_Practices\\jarvis_system_first_part\\JARVIS-Voice-Assistant-System\\music"
+        music_dir = "D:\\Data_Science_and_Machine_Learning\\03-Inceptionbd\\14-(Module-14)_Mega_Project_(Python)\\Class_Practices\\jarvis_system_first_part\\JARVIS-Voice-Assistant-System\\music"
         try:
             surah = os.listdir(music_dir)
             if surah:
@@ -115,7 +115,7 @@ def gemini_model_response(user_input):
     GEMINI_API_KEY = "Your API KEY"
     genai.configure(api_key=GEMINI_API_KEY)
     model = genai.GenerativeModel("gemini-2.5-flash")
-    prompt = f"Your name is JARVIS, You act like JARVIS. Answer the provided question in short: {user_input}"
+    prompt = f"Your name is JARVIS, You act like JARVIS. Answer the provided questions in short: {user_input}"
     response = model.generate_content(prompt)
     result = response.text
 
@@ -203,7 +203,7 @@ while True:
                 "Why do Java developers wear glasses? Because they don't C#"
             ]
         speak(random.choice(jokes))
-        
+
     elif "wikipedia" in query:
         speak("Searching wikipedia...")
         query = query.replace("wikipedia", "")
